@@ -80,8 +80,9 @@ const LaunchRequestHandler = {
 
 const EmailIntentHandler = {
     canHandle(handlerInput) {
+      console.log('email intent')
       return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-        && handlerInput.requestEnvelope.request.intent.name === 'EmailIntent';
+        && handlerInput.requestEnvelope.request.intent.name === 'EmailIntentHandler';
     },
     async handle(handlerInput) {
       const { serviceClientFactory, responseBuilder } = handlerInput;
@@ -196,7 +197,8 @@ const skillBuilder = Alexa.SkillBuilders.custom()
         LaunchRequestHandler,
         // ShowMenuIntentHandler,
         MenuIntentHandler,
-        PlaceOrderIntentHandler
+        PlaceOrderIntentHandler,
+        EmailIntentHandler
     )
     .addErrorHandlers(
         ErrorHandler
